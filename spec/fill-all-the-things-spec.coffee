@@ -1,10 +1,25 @@
-(($) ->
+(($,_) ->
   describe "FillAllTheThings", ->
     window.Yields = (f) ->
       When -> FillAllTheThings.fill()
       Then(f)
 
     describe ".fill", ->
+      describe "events", ->
+        Given -> spyOn(_, "defer").andCallFake (f) -> f()
+        Given -> @$input = affix('input')
+        Given -> @$input.on('change', => @triggered = true)
+
+        context "value got changed", ->
+          When -> FillAllTheThings.fill()
+          Then -> @triggered is true
+
+        context "value wasn't changed", ->
+          Given -> @$input.val('foo')
+          When -> FillAllTheThings.fill()
+          Then -> @triggered isnt true
+
+
       describe "input states", ->
         context "boring fields", ->
           Given -> @$input = affix('input')
@@ -22,9 +37,13 @@
           Given -> @$input = affix('input').attr('disabled','disabled')
           Yields -> @$input.val().length == 0
 
-        context "fields with maxLength specified", ->
+        context "fields with maxlength specified", ->
           Given -> @$input = affix('input').attr('maxlength', 3)
           Yields -> @$input.val().length is 3
+
+        context "fields with readonly specified", ->
+          Given -> @$input = affix('input').attr('readonly','readonly')
+          Yields -> @$input.val().length == 0
 
 
       describe "field types", ->
@@ -40,8 +59,13 @@
               Yields -> @$input.val() == EMAIL
 
           describe "telephones", ->
-            Given -> @$input = affix('input[type="tel"]')
-            Yields -> @$input.val() is "123-456-7890"
+            PHONE="1234567890"
+            context "type=tel", ->
+              Given -> @$input = affix('input[type="tel"]')
+              Yields -> @$input.val() is PHONE
+            context "named phone", ->
+              Given -> @$input = affix('input[name="phone"]')
+              Yields -> @$input.val() is PHONE
 
           describe "url", ->
             Given -> @$input = affix('input[type="url"]')
@@ -67,5 +91,5 @@
           context "obviously age verifications", ->
             Given -> @$input = affix('select option[value="1975"]+option[value="2055"]')
             Yields -> @$input.val() is "1975"
-)(FillAllTheThings.$)
+)(FillAllTheThings.$,FillAllTheThings._)
 

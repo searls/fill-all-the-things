@@ -29,8 +29,8 @@ f = window.FillAllTheThings ||= {}
       test: (it) -> it.is('[type="email"]') or /email/i.test(it.attr('name'))
       action: -> "fill@llthethings.org"
     ,
-      test: (it) -> it.is('[type="tel"]')
-      action: -> "123-456-7890"
+      test: (it) -> it.is('[type="tel"]') or /phone/i.test(it.attr('name'))
+      action: -> "1234567890"
     ,
       test: (it) -> it.is('[type="url"]')
       action: -> "http://www.w3.org"
@@ -49,12 +49,15 @@ f = window.FillAllTheThings ||= {}
   ]
 
   f.fill = ->
-    $inputs = $(':input:visible:enabled').val (i, val) ->
-      doFirst(types, [$(@), val])
+    $inputs = $(':input:visible:enabled:not([readonly])').val (i, val) ->
+      newVal = doFirst(types, [$(@), val])
+      if val != newVal then _.defer => $(@).trigger('change')
+      newVal
+
 
   figureOutAValue = (it, val) ->
     val = doFirst(textFills, [it,val])
-    doAll(mutations, [it,val])
+    doAll(mutations, [it, val])
 
   doFirst = (actions, args) ->
     match = undefined
