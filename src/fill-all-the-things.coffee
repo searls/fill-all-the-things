@@ -11,7 +11,7 @@ f = window.FillAllTheThings ||= {}
 
 ( ($,_) ->
 
-  f.actions = [
+  types = [
       test: (it) -> it.is(':checkbox,:radio')
       action: (it) -> it.attr('checked','checked')
     ,
@@ -19,35 +19,44 @@ f = window.FillAllTheThings ||= {}
       action: (it) -> it.find('option[value="1975"],option:last').val()
     ,
       test: -> true
-      action: (it, val) -> f.figureOutAValue(it, val)
+      action: (it, val) -> figureOutAValue(it, val)
+  ]
+
+  textFills = [
+      test: (it) -> it.is(':password')
+      action: -> "f1llTh!NG$?"
+    ,
+      test: (it) -> it.is('[type="email"]') or /email/i.test(it.attr('name'))
+      action: -> "fill@llthethings.org"
+    ,
+      test: (it) -> it.is('[type="tel"]')
+      action: -> "123-456-7890"
+    ,
+      test: (it) -> it.is('[type="url"]')
+      action: -> "http://www.w3.org"
+    ,
+      test: (it, val) -> !val
+      action: -> "Filling a Thing"
+    ,
+      test: -> true
+      action: (it, val) -> val
   ]
 
   f.fill = ->
     $inputs = $(':input:visible:enabled').val (i, val) ->
-      it = $(@)
-      newVal = val
-      _(f.actions).find (o) ->
-        if o.test(it, val)
-          newVal = o.action(it, val)
-          true
-      newVal
+      doFirst(types, [$(@), val])
 
-  f.figureOutAValue = (it, val) ->
-    if it.is(':password')
-      "f1llTh!NG$?"
-    else if it.is('[type="email"]') or /email/i.test(it.attr('name'))
-      "fill@llthethings.org"
-    else if it.is('[type="tel"]')
-      "123-456-7890"
-    else if it.is('[type="url"]')
-      "http://www.w3.org"
-    else if !val
-      "Filling a Thing"
-    else
-      val
+  figureOutAValue = (it, val) ->
+    doFirst(textFills,[it,val])
 
+  doFirst = (actions, args) ->
+    match = undefined
+    _(actions).find (o) ->
+      if o.test.apply(@, args)
+        match = o.action.apply(@, args)
+        true
+    match
 
-  $ ->
-    f.fill()
+  $ -> f.fill()
 )(f.$,f._)
 
