@@ -20,6 +20,11 @@ body {
   margin: 35px 0px 45px 0px;
 }
 
+.alt-approach {
+  font-size: .65em;
+  color: #454545;
+}
+
 .bookmarklet {
   color: #fff;
   font-weight: lighter;
