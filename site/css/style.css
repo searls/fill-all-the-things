@@ -6,6 +6,7 @@ body {
   max-width: 980px;
   margin: 0 auto;
   margin-top: 30px;
+  margin-bottom: 30px;
   font-family: 'helvetica', 'sans-serif';
   font-size: 18px;
   color: #343434;
@@ -47,9 +48,13 @@ fieldset hr {
   margin-bottom: 22px;
 }
 
+label {
+  display: inline-block;
+  min-width: 120px;
+}
 
 footer {
-  font-size: .7em;
+  font-size: .85em;
   margin: 70px 0px 0px 0px;
   text-align: center;
 }
