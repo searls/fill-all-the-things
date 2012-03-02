@@ -1,6 +1,7 @@
 src_files:
-  - "vendor/**/*.{js,coffee}"
+  - "vendor/**/*.js"
   - "src/**/*.{js,coffee}"
+  - "site/js/**/*.js"
 
 stylesheets:
 
