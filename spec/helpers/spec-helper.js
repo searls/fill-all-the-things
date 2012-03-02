@@ -5,3 +5,4 @@ beforeEach(function() {
 
 });
 
+window.jasmineFixture(FillAllTheThings.$)

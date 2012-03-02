@@ -1,5 +1,4 @@
 (($) ->
-  jasmineFixture($)
   describe "FillAllTheThings", ->
     window.Yields = (f) ->
       When -> FillAllTheThings.fill()

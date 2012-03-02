@@ -6,6 +6,19 @@
     self.sprinkleBookmarklet = function() {
       var url = bookmarkletify("http://searls.github.com/fill-all-the-things/dist/fill-all-the-things.min.js");
       window.location.hash = url;
+      $('a.bookmarklet').attr('href', url);
+    };
+
+    self.preventDirectBookmarkletClicking = function() {
+      $('a.bookmarklet').on('click', function(e) {
+        e.preventDefault();
+        window.alert("You're *this* close!\n\nInstructions:\n\n1. Drag this link to your bookmarks bar\n2. Click the bookmarklet from your bookmarks bar to fill in form fields.");
+      });
+    };
+
+    self.init = function() {
+      self.sprinkleBookmarklet();
+      self.preventDirectBookmarkletClicking();
     };
 
     var bookmarkletify = function(url){
@@ -16,7 +29,7 @@
   }
 
   $(function(){
-    f.Site().sprinkleBookmarklet()
+    f.Site().init()
   });
 })(window.jQuery || window.FillAllTheThings.$)
 

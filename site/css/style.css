@@ -59,6 +59,7 @@ input {
 }
 
 footer {
+  font-family: 'gill sans mt', sans-serif;
   font-size: .85em;
   margin: 70px 0px 0px 0px;
   text-align: center;
@@ -66,8 +67,7 @@ footer {
 
 .test-double {
   color: #00BB61;
-  font-family: 'gill sans mt', sans-serif;
-  font-size: 1.2em;
+  font-size: 1.1em;
 }
 
 footer a:link,

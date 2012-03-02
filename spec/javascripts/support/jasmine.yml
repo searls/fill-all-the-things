@@ -6,7 +6,6 @@ src_files:
 stylesheets:
 
 helpers:
-  - "helpers/spec-helper.js"
   - "helpers/**/*.{js,coffee}"
 
 spec_files:
