@@ -35,6 +35,10 @@ describe "FillAllTheThings", ->
         Given -> @$input = affix('input[type="tel"]')
         Yields -> @$input.val() is "123-456-7890"
 
+      describe "url", ->
+        Given -> @$input = affix('input[type="url"]')
+        Yields -> @$input.val() is "http://www.w3.org"
+
     describe "password fields", ->
       Given -> @$input = affix('input[type="password"]')
       Yields -> @$input.val() == "f1llTh!NG$?"

@@ -18,6 +18,8 @@ window.FillAllTheThings =
         "fill@llthethings.org"
       else if it.is('[type="tel"]')
         "123-456-7890"
+      else if it.is('[type="url"]')
+        "http://www.w3.org"
       else if !val
         "Filling a Thing"
       else
