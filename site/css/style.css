@@ -1,0 +1,70 @@
+html {
+  background-color: #454545;
+}
+
+body {
+  max-width: 980px;
+  margin: 0 auto;
+  margin-top: 30px;
+  font-family: 'helvetica', 'sans-serif';
+  font-size: 18px;
+  color: #343434;
+  background-color: #fff;
+  padding: 1px 0px 20px 0px;
+  border-radius: 30px;
+}
+
+.bookmarklet-wrap {
+  text-align: center;
+  margin: 35px 0px 45px 0px;
+}
+
+.bookmarklet {
+  color: #fff;
+  font-weight: lighter;
+  letter-spacing: 1px;
+  padding: 10px;
+  margin: 10px;
+  display: inline-block;
+  border-radius: 12px;
+  text-decoration: none;
+  background-color: #232323;
+}
+
+fieldset {
+  width: 450px;
+  margin: 0 auto;
+}
+
+fieldset > div {
+  margin: 5px 0px 15px 0px;
+}
+
+fieldset hr {
+  width: 270px;
+  color: #454545;
+  margin-top: 22px;
+  margin-bottom: 22px;
+}
+
+
+footer {
+  font-size: .7em;
+  margin: 70px 0px 0px 0px;
+  text-align: center;
+}
+
+.test-double {
+  color: #00BB61;
+  font-family: 'gill sans mt', sans-serif;
+  font-size: 1.2em;
+}
+
+footer a:link,
+footer a:visited {
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
