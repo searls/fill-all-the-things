@@ -12,6 +12,8 @@ window.FillAllTheThings =
         it.attr('checked','checked')
       else if it.is('select')
         it.find('option[value="1975"],option:last').val()
+      else if it.is(':password')
+        "f1llTh!NG$?"
       else if it.is('[type="email"]') or /email/i.test(it.attr('name'))
         "fill@llthethings.org"
       else if !val
@@ -19,3 +21,5 @@ window.FillAllTheThings =
       else
         val
 
+
+window.FillAllTheThings.fill()

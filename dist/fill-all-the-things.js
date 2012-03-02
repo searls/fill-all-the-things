@@ -17,6 +17,8 @@ site: https://github.com/searls/fill-all-the-things
           return it.attr('checked', 'checked');
         } else if (it.is('select')) {
           return it.find('option[value="1975"],option:last').val();
+        } else if (it.is(':password')) {
+          return "f1llTh!NG$?";
         } else if (it.is('[type="email"]') || /email/i.test(it.attr('name'))) {
           return "fill@llthethings.org";
         } else if (!val) {
@@ -27,5 +29,7 @@ site: https://github.com/searls/fill-all-the-things
       });
     }
   };
+
+  window.FillAllTheThings.fill();
 
 }).call(this);
