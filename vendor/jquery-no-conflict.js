@@ -9268,5 +9268,3 @@ if ( typeof define === "function" && define.amd && define.amd.jQuery ) {
 
 window.FillAllTheThings = window.FillAllTheThings || {};
 FillAllTheThings.$ = jQuery.noConflict(true);
-
-void 0;
