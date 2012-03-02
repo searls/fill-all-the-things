@@ -42,12 +42,19 @@ f = window.FillAllTheThings ||= {}
       action: (it, val) -> val
   ]
 
+  mutations = [
+      test: (it) -> it.attr('maxlength')
+      action: (it, val) -> val.substring(0, it.attr('maxlength'))
+    ,
+  ]
+
   f.fill = ->
     $inputs = $(':input:visible:enabled').val (i, val) ->
       doFirst(types, [$(@), val])
 
   figureOutAValue = (it, val) ->
-    doFirst(textFills,[it,val])
+    val = doFirst(textFills, [it,val])
+    doAll(mutations, [it,val])
 
   doFirst = (actions, args) ->
     match = undefined
@@ -56,6 +63,15 @@ f = window.FillAllTheThings ||= {}
         match = o.action.apply(@, args)
         true
     match
+
+  doAll = (actions, args) ->
+    thing = it: args[0], val: args[1]
+    _(actions).find (o) ->
+      if o.test.call(@, thing.it, thing.val)
+        thing.val = o.action.call(@, thing.it, thing.val)
+        true
+    thing.val
+
 
   $ -> f.fill()
 )(f.$,f._)
