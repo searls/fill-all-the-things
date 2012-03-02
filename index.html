@@ -3,55 +3,9 @@
 <html>
   <head>
     <title>fill all the things!</title>
-    <style type="text/css">
-      html {
-        background-color: #454545;
-      }
-      body {
-        max-width: 980px;
-        margin: 0 auto;
-        margin-top: 30px;
-        font-family: 'helvetica', 'sans-serif';
-        font-size: 18px;
-        color: #343434;
-        background-color: #fff;
-        padding: 1px 0px 20px 0px;
-        border-radius: 30px;
-      }
-      .bookmarklet-wrap {
-        text-align: center;
-        margin: 35px 0px 45px 0px;
-      }
-      .bookmarklet {
-        color: #fff;
-        font-weight: lighter;
-        letter-spacing: 1px;
-        padding: 10px;
-        margin: 10px;
-        display: inline-block;
-        border-radius: 12px;
-        text-decoration: none;
-        background-color: #232323;
-      }
-      fieldset {
-        width: 450px;
-        margin: 0 auto;
-      }
 
-      fieldset > div {
-        margin: 5px 0px 15px 0px;
-      }
+    <link rel="stylesheet" href="site/css/style.css" media="screen,projection,print" type="text/css">
 
-      footer {
-        font-size: .7em;
-        margin: 70px 0px 0px 0px;
-        text-align: center;
-      }
-      .test-double {
-        font-family: 'gill sans mt', sans-serif;
-        font-size: 1.2em;
-      }
-    </style>
   </head>
   <body>
     <div class="bookmarklet-wrap">
@@ -68,19 +22,32 @@
         <input id="passwordField" type="password"></input>
       </div>
       <div>
+        <label for="emailField">Email:</label>
+        <input id="emailField" type="email"></input>
+      </div>
+      <div>
+        <label for="telField">Telephone:</label>
+        <input id="telField" type="tel"></input>
+      </div>
+      <div>
+        <label for="existingField">Existing text:</label>
+        <input id="existingField" type="text" value="won't be overwritten"></input>
+      </div>
+      <hr/>
+      <div>
         <label for="checkbox1">Accept Terms:</label>
         <input id="checkbox1" type="checkbox" value="true"></input>
         <br/>
         <label for="checkbox2">Sign Away Children:</label>
         <input id="checkbox2" type="checkbox" value="false"></input>
       </div>
-      <hr/>
       <div>
         <label for="radio1">Apples</label>
         <input id="radio1" name="radios" type="radio" value="true"></input>
         <label for="radio2">Oranges</label>
         <input id="radio2" name="radios" type="radio" value="false"></input>
       </div>
+      <hr/>
       <div>
         <label for="selectField">Drop downs</label>
         <select id="selectField">
@@ -89,7 +56,6 @@
           <option>will pick the last thing</option>
         </select>
       </div>
-      <hr/>
       <div>
         <label for="ageVerifierYear">Age verifiers</label>
         <select>
@@ -111,7 +77,8 @@
       <hr/>
       <div>
         <label for="textArea">Text areas:</label>
-        <textarea id="textArea"></textarea>
+        <br/>
+        <textarea id="textArea" cols="40" rows="5"></textarea>
       </div>
 
     </fieldset>
