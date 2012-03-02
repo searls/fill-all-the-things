@@ -9,5 +9,9 @@ CLEAN << "dist"
 
 Jasmine::Headless::Task.new
 
-task :default => ['jasmine:headless', 'coffee:compile']
+task :minify do
+  system "juicer merge -s --force dist/fill-all-the-things.js"
+end
+
+task :default => ['jasmine:headless', 'coffee:compile', 'minify']
 

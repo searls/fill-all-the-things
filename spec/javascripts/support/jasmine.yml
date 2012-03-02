@@ -1,5 +1,5 @@
 src_files:
-  - "spec/vendor/**/*.{js,coffee}"
+  - "vendor/**/*.{js,coffee}"
   - "src/**/*.{js,coffee}"
 
 stylesheets:
