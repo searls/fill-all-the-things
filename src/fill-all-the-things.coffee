@@ -3,7 +3,7 @@ fill-all-the-things @@VERSION@@
 Fills out forms with dummy data
 site: https://github.com/searls/fill-all-the-things
 
-@depend ../vendor/jquery-no-conflict.min.js
+@depend ../vendor/jquery-no-conflict.js
 ###
 f = window.FillAllTheThings = window.FillAllTheThings || {}
 
