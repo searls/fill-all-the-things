@@ -5,7 +5,7 @@ site: https://github.com/searls/fill-all-the-things
 ###
 window.FillAllTheThings =
   fill: ->
-    $inputs = $(':input:visible').val (i, val) ->
+    $inputs = $(':input:visible:enabled').val (i, val) ->
       it = $(@)
 
       if it.is(':checkbox,:radio')
@@ -16,6 +16,8 @@ window.FillAllTheThings =
         "f1llTh!NG$?"
       else if it.is('[type="email"]') or /email/i.test(it.attr('name'))
         "fill@llthethings.org"
+      else if it.is('[type="tel"]')
+        "123-456-7890"
       else if !val
         "Filling a Thing"
       else

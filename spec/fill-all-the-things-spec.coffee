@@ -16,6 +16,10 @@ describe "FillAllTheThings", ->
       Given -> @$input = affix('input[value="fooberry"]')
       Yields -> @$input.val() is "fooberry"
 
+    describe "disabled fields", ->
+      Given -> @$input = affix('input').attr('disabled','disabled')
+      Yields -> @$input.val().length == 0
+
     describe "text fields", ->
       describe "filling in email fields", ->
         EMAIL = "fill@llthethings.org"
@@ -28,7 +32,8 @@ describe "FillAllTheThings", ->
           Yields -> @$input.val() == EMAIL
 
       describe "telephones", ->
-
+        Given -> @$input = affix('input[type="tel"]')
+        Yields -> @$input.val() is "123-456-7890"
 
     describe "password fields", ->
       Given -> @$input = affix('input[type="password"]')
