@@ -50,9 +50,8 @@ f = window.FillAllTheThings ||= {}
 
   f.fill = ->
     $inputs = $(':input:visible:enabled:not([readonly])').val (i, val) ->
-      newVal = doFirst(types, [$(@), val])
-      if val != newVal then _.defer => $(@).trigger('change')
-      newVal
+      _(doFirst(types, [$(@), val])).tap (newVal) =>
+        if val != newVal then _.defer => $(@).trigger('change')
 
 
   figureOutAValue = (it, val) ->
