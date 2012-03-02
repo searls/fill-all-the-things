@@ -56,10 +56,10 @@ site: https://searls.github.com/fill-all-the-things
         }
       }, {
         test: function(it) {
-          return it.is('[type="tel"]');
+          return it.is('[type="tel"]') || /phone/i.test(it.attr('name'));
         },
         action: function() {
-          return "123-456-7890";
+          return "1234567890";
         }
       }, {
         test: function(it) {
@@ -67,6 +67,13 @@ site: https://searls.github.com/fill-all-the-things
         },
         action: function() {
           return "http://www.w3.org";
+        }
+      }, {
+        test: function(it) {
+          return it.is('[type="range"],.numeric,[max],[min]');
+        },
+        action: function(it) {
+          return it.attr('max') || it.attr('min') || "0";
         }
       }, {
         test: function(it, val) {
@@ -96,8 +103,15 @@ site: https://searls.github.com/fill-all-the-things
     ];
     f.fill = function() {
       var $inputs;
-      return $inputs = $(':input:visible:enabled').val(function(i, val) {
-        return doFirst(types, [$(this), val]);
+      return $inputs = $(':input:visible:enabled:not([readonly])').val(function(i, val) {
+        var _this = this;
+        return _(doFirst(types, [$(this), val])).tap(function(newVal) {
+          if (val !== newVal) {
+            return _.defer(function() {
+              return $(_this).trigger('change');
+            });
+          }
+        });
       });
     };
     figureOutAValue = function(it, val) {

@@ -71,9 +71,33 @@
             Given -> @$input = affix('input[type="url"]')
             Yields -> @$input.val() is "http://www.w3.org"
 
-        describe "password fields", ->
-          Given -> @$input = affix('input[type="password"]')
-          Yields -> @$input.val() == "f1llTh!NG$?"
+          describe "password fields", ->
+            Given -> @$input = affix('input[type="password"]')
+            Yields -> @$input.val() == "f1llTh!NG$?"
+
+          describe "numeric stuff", ->
+            context "has a .numeric class", ->
+              Given -> @$input = affix('input.numeric')
+              Yields -> isFinite(parseInt(@$input.val(),10))
+
+            context "is a range", ->
+              Given -> @$input = affix('input[type="range"]')
+              Yields -> parseInt(@$input.val(),10) is 0
+
+            context "has a min", ->
+              Given -> @$input = affix('input[min="5"]')
+              Yields -> @$input.val() == "5"
+
+            context "has a max", ->
+              Given -> @$input = affix('input[max="50"]')
+              Yields -> @$input.val() == "50"
+
+            context "has it all", ->
+              Given -> @$input = affix('input.numeric[min="10"][max="13"]')
+              Yields ->
+                n = parseInt(@$input.val(),10)
+                isFinite(n) and n >= 10 and n <= 13
+
 
         describe "checkboxen", ->
           Given -> @$input = affix('input[type="checkbox"]')

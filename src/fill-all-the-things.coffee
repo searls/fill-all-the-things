@@ -35,6 +35,9 @@ f = window.FillAllTheThings ||= {}
       test: (it) -> it.is('[type="url"]')
       action: -> "http://www.w3.org"
     ,
+      test: (it) -> it.is('[type="range"],.numeric,[max],[min]')
+      action: (it) -> it.attr('max') or it.attr('min') or "0"
+    ,
       test: (it, val) -> !val
       action: -> "Filling a Thing"
     ,
